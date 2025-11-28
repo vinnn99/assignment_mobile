@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:assignment_mobile/counter_model.dart';
+import 'package:assignment_mobile/bloc/counter_bloc.dart';
 
 class HomePage extends StatelessWidget {
-  final CounterModel model;
-  const HomePage({super.key, required this.model});
+  final CounterBloc bloc;
+  const HomePage({super.key, required this.bloc});
 
   @override
   Widget build(BuildContext context) {
@@ -16,22 +16,26 @@ class HomePage extends StatelessWidget {
             const Text('Pilih halaman:'),
             const SizedBox(height: 12),
             ElevatedButton(
-              onPressed: () => Navigator.pushNamed(context, '/increment'),
-              child: const Text('Buka Halaman 2 (Increment)'),
+              onPressed: () => Navigator.pushNamed(context, '/add'),
+              child: const Text('Buka Halaman Penjumlahan'),
             ),
             const SizedBox(height: 8),
             ElevatedButton(
-              onPressed: () => Navigator.pushNamed(context, '/decrement'),
-              child: const Text('Buka Halaman 3 (Decrement)'),
+              onPressed: () => Navigator.pushNamed(context, '/subtract'),
+              child: const Text('Buka Halaman Pengurangan'),
+            ),
+            const SizedBox(height: 8),
+            ElevatedButton(
+              onPressed: () => Navigator.pushNamed(context, '/multiply'),
+              child: const Text('Buka Halaman Perkalian'),
             ),
             const SizedBox(height: 24),
-            AnimatedBuilder(
-              animation: model,
-              builder: (context, _) => Text(
-                'Nilai saat ini: ${model.value}',
-                style: Theme.of(
-                  context,
-                ).textTheme.titleLarge?.copyWith(color: model.color),
+            StreamBuilder<int>(
+              stream: bloc.stream,
+              initialData: bloc.value,
+              builder: (context, s) => Text(
+                'Nilai saat ini: ${s.data}',
+                style: Theme.of(context).textTheme.titleLarge,
               ),
             ),
           ],

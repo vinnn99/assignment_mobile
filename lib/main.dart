@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:assignment_mobile/counter_model.dart';
+import 'package:assignment_mobile/bloc/counter_bloc.dart';
 import 'package:assignment_mobile/pages/home_page.dart';
 import 'package:assignment_mobile/pages/increment_page.dart';
 import 'package:assignment_mobile/pages/decrement_page.dart';
+import 'package:assignment_mobile/pages/multiplication_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +17,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final CounterModel _model = CounterModel();
+  final CounterBloc _bloc = CounterBloc();
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +29,17 @@ class _MyAppState extends State<MyApp> {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => HomePage(model: _model),
-        '/increment': (context) => IncrementPage(model: _model),
-        '/decrement': (context) => DecrementPage(model: _model),
+        '/': (context) => HomePage(bloc: _bloc),
+        '/add': (context) => IncrementPage(bloc: _bloc),
+        '/subtract': (context) => DecrementPage(bloc: _bloc),
+        '/multiply': (context) => MultiplicationPage(bloc: _bloc),
       },
     );
+  }
+
+  @override
+  void dispose() {
+    _bloc.dispose();
+    super.dispose();
   }
 }

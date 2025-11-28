@@ -1,6 +1,29 @@
 # assignment_mobile
 
-A new Flutter project.
+A sample Flutter app demonstrating a small global counter backed by a simple BLoC.
+
+This assignment adds three pages that use the Counter BLoC to perform operations against
+the same global integer value:
+
+- Halaman Penjumlahan (Addition) — enter a number and press "Tambah" to add it.
+- Halaman Pengurangan (Subtraction) — enter a number and press "Kurangi" to subtract it.
+- Halaman Perkalian (Multiplication) — enter a number and press "Kali" to multiply it.
+
+The counter state is global and shared between pages via a CounterBloc instance passed through
+the named routes from `main.dart`.
+
+How to run:
+
+```powershell
+flutter pub get
+flutter run
+```
+
+Run tests:
+
+```powershell
+flutter test
+```
 
 ## Getting Started
 
